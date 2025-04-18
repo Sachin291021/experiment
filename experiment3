@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the node structure
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+Node* head = NULL;
+
+// Function to create (insert at the end)
+void insertEnd(int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != NULL)
+            temp = temp->next;
+        temp->next = newNode;
+    }
+    printf("Node inserted: %d\n", value);
+}
+
+// Function to display the list (traversing)
+void displayList() {
+    Node* temp = head;
+    if (temp == NULL) {
+        printf("List is empty!\n");
+        return;
+    }
+
+    printf("Linked List: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Function to delete a node by value
+void deleteNode(int value) {
+    Node* temp = head;
+    Node* prev = NULL;
+
+    while (temp != NULL && temp->data != value) {
+        prev = temp;
+        temp = temp
