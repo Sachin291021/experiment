@@ -49,4 +49,56 @@ void deleteNode(int value) {
 
     while (temp != NULL && temp->data != value) {
         prev = temp;
-        temp = temp
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        printf("Value %d not found in the list!\n", value);
+        return;
+    }
+
+    if (prev == NULL) {
+        head = temp->next;
+    } else {
+        prev->next = temp->next;
+    }
+
+    free(temp);
+    printf("Node with value %d deleted.\n", value);
+}
+
+// Main function
+int main() {
+    int choice, value;
+
+    do {
+        printf("\nLinked List Operations Menu:\n");
+        printf("1. Insert Node\n2. Display List\n3. Delete Node\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to insert: ");
+                scanf("%d", &value);
+                insertEnd(value);
+                break;
+            case 2:
+                displayList();
+                break;
+            case 3:
+                printf("Enter value to delete: ");
+                scanf("%d", &value);
+                deleteNode(value);
+                break;
+            case 4:
+                printf("Exiting program.\n");
+                break;
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
